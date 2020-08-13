@@ -1,0 +1,214 @@
+body {
+  background-color: grey;
+}
+
+#shrimpProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+#tinProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+#copperProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+#ironProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+#coalProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+#mithrilProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+#adamantiteProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+#runiteProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+#mineCopper{
+  min-height: 5.5vh;
+  min-width: 15vw;
+  float: left;
+  border: 5px;
+  border-color: black;
+  background-color: grey;
+  display: block;
+  text-align: center;
+  margin-right: 3vw;
+  font-size: 10%;
+  margin-bottom: 2vh;
+  border-style: solid;
+}
+
+#mineTin{
+  min-height: 5.5vh;
+  min-width: 15vw;
+  float: left;
+  border: 5px;
+  border-color: black;
+  background-color: grey;
+  display: block;
+  text-align: center;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+  border-style: solid;
+}
+#mineIron{
+  min-height: 5.5vh;
+  min-width: 15vw;
+  float: left;
+  border: 5px;
+  border-color: black;
+  background-color: grey;
+  display: block;
+  text-align: center;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+  border-style: solid;
+}
+
+#mineCoal{
+  min-height: 5.5vh;
+  min-width: 15vw;
+  float: left;
+  border: 5px;
+  border-color: black;
+  background-color: grey;
+  display: block;
+  text-align: center;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+  border-style: solid;
+}
+
+#mineMithril{
+  min-height: 5.5vh;
+  min-width: 15vw;
+  float: left;
+  border: 5px;
+  border-color: black;
+  background-color: grey;
+  display: block;
+  text-align: center;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+  border-style: solid;
+}
+
+#mineAdamantite{
+  min-height: 5.5vh;
+  min-width: 15vw;
+  float: left;
+  border: 5px;
+  border-color: black;
+  background-color: grey;
+  display: block;
+  text-align: center;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+  border-style: solid;
+}
+
+#mineRunite{
+  min-height: 5.5vh;
+  min-width: 15vw;
+  float: left;
+  border: 5px;
+  border-style: solid;
+  border-color: black;
+  background-color: grey;
+  display: block;
+  text-align: center;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+}
+
+#console {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 20vh;
+  background-color: black;
+  color: white;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#left-container{
+  float: left;
+  width: 10vw;
+  border-style: solid;
+  height: 75vh;
+  margin: 0;
+}
+
+#right-container{
+  float: right;
+  width: 86vw;
+  margin: 0;
+}
+
+#mining{
+  display: none;
+}
+
+#inventory{
+  display: none;
+}
+
+.item {
+  float: left;
+  height: auto;
+  width: 4vw;
+  max-height: 10vw;
+  margin: 1%;
+  border-style: solid;
+  border-color: black;
+  padding: 1%;
+  text-align: center;
+
+}
+
+.itemImage {
+  height: 3vw;
+  width: 3vw;
+}
+
+.itemAmount {
+  text-align: center;
+  margin-bottom: 1%;
+  height: auto;
+}
+
+#smithing {
+  display: none;
+}
+
+#fishing {
+  display: none;
+}

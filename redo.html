@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="redo.js"></script>
+  <link rel="stylesheet" href="redo.css">
+</head>
+
+<body onload="onLoad()">
+  <div id="left-container">
+    <li onclick="switchPage('inventory')">Inventory</li>
+    <li onclick="switchPage('mining')">Mining</li>
+    <li onclick="switchPage('smithing')">Smithing</li>
+    <li onclick="switchPage('fishing')">Fishing</li>
+  </div>
+  <div id="right-container">
+    <div id="inventory">
+
+    </div>
+    <div id="fishing">
+      <div id="fishingXP"></div>
+      <div id="fishingLevel">
+
+      </div>
+      <input type="button" name="" value="Fish for Shrimp" onclick="fishin(shrimp)"><br>
+
+    </div>
+    <div id="mining">
+      <div id="mininglevel">
+      </div>
+      <div id="miningxp">
+      </div>
+      <div id="mineCopper">
+        <div id="copperProgress">
+        </div>
+        <input type="button" name="MineCopper" value="Mine Copper" onclick="mineRock(0)">
+      </div>
+      <div id="mineTin">
+        <div id="tinProgress">
+        </div>
+        <input type="button" name="MineTin" value="Mine Tin" onclick="mineRock(1)">
+      </div>
+      <input type="button" name="" value="Reset All" onclick="reset()">
+
+      <div id="mineIron">
+        <div id="ironProgress">
+        </div>
+        <input type="button" name="MineIron" value="Mine Iron" onclick="mineRock(2)">
+
+      </div>
+
+      <div id="mineCoal">
+        <div id="coalProgress">
+        </div>
+        <input type="button" name="MineCoal" value="Mine Coal" onclick="mineRock(3)">
+      </div>
+
+      <div id="mineMithril">
+        <div id="mithrilProgress">
+        </div>
+        <input type="button" name="MineMithril" value="Mine Mithril" onclick="mineRock(4)">
+      </div>
+
+      <div id="mineAdamantite">
+        <div id="adamantiteProgress">
+        </div>
+        <input type="button" name="MineAdamantite" value="Mine Adamantite" onclick="mineRock(5)">
+      </div>
+
+      <div id="mineRunite">
+        <div id="runiteProgress">
+        </div>
+        <input type="button" name="MineRunite" value="Mine Runite" onclick="mineRock(6)">
+      </div>
+
+      <br><br><br><br><br><br><br><br><br>
+      <div id="testing">
+        <input type="button" name="" value="Reset XP" onclick="resetStats()"><br>
+        <input type="button" name="" value="Reset Intervals" onclick="clearIntervals()"><br>
+        <input type="button" name="" value="Log Variables" onclick="logVariables()"><br>
+      </div>
+    </div>
+
+
+
+    <div id="smithing">
+      <div id="smithingXP"></div><br>
+      <div id="smithingLevel"></div><br>
+      <input type="button" name="" value="Smelt Bronze Bar" onClick="smelt(bronzeBar)"><br>
+      <input type="button" name="" value="Smelt Iron Bar" onClick="smelt(ironBar)"><br>
+      <input type="button" name="" value="Smelt Steel Bar" onClick="smelt(steelBar)"><br>
+      <input type="button" name="" value="Smelt Mithril Bar" onclick="smelt(mithrilBar)"><br>
+      <input type="button" name="" value="Smelt Adamantite Bar" onclick="smelt(adamantiteBar)"><br>
+      <input type="button" name="" value="Smelt Runite Bar" onclick="smelt(runiteBar)"><br>
+      <input type="button" name="" value="Bronze Dagger" onclick="smelt(bronzeDagger)"><br>
+      <input type="button" name="" value="Bronze Throwing Knives" onclick="smelt(bronzeThrowingKnife)"><br>
+      <input type="button" name="" value="Bronze Sword" onclick="smelt(bronzeSword)"><br>
+      <input type="button" name="" value="Bronze Arrow Tips" onclick="smelt(bronzeArrowTips)"><br>
+      <input type="button" name="" value="Bronze Gloves" onclick="smelt(bronzeGloves)"><br>
+      <input type="button" name="" value="Bronze Scimitar" onclick="smelt(bronzeScimitar)"><br>
+      <input type="button" name="" value="Bronze Helmet" onclick="smelt(bronzeHelmet)"><br>
+      <input type="button" name="" value="Bronze Battleaxe" onclick="smelt(bronzeBattleaxe)"><br>
+      <input type="button" name="" value="Bronze Javelin Heads" onclick="smelt(bronzeJavelinHeads)"><br>
+      <input type="button" name="" value="Bronze Boots" onclick="smelt(bronzeBoots)"><br>
+      <input type="button" name="" value="Bronze Shield" onclick="smelt(bronzeShield)"><br>
+      <input type="button" name="" value="Bronze 2H Sword" onclick="smelt(bronze2HSword)"><br>
+      <input type="button" name="" value="Bronze Crossbow Head" onclick="smelt(bronzeCrossbowHead)"><br>
+      <input type="button" name="" value="Bronze Platelegs" onclick="smelt(bronzePlatelegs)"><br>
+      <input type="button" name="" value="Bronze Platebody" onclick="smelt(bronzePlatebody)"><br>
+
+
+    </div>
+    </div>
+
+  <div id="console">
+  </div>
+</body>
+
+</html>
