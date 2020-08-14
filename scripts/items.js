@@ -1,5 +1,26 @@
 var items = []
 
+var bronzeBar = {
+  name: "Bronze Bar",
+  requiredlevel: 1,
+  requireditems: {
+    ["Copper Ore"]: 1,
+    ["Tin Ore"]: 1
+  },
+  xp: 2,
+  icon: "images/bronze bar.svg"
+}
+
+var ironBar = {
+  name: "Iron Bar",
+  requiredlevel: 10,
+  requiredItems: {
+    ["Iron Ore"]: 1
+  },
+  xp: 10,
+  icon: "images/iron bar.svg"
+}
+
 var copperOre = {
   name: "Copper Ore",
   value: 2,
@@ -70,7 +91,7 @@ var topaz = {
 
 items[copperOre.name] = copperOre;
 items[tinOre.name] = tinOre;
-items[ironOre.name] = ironOre ;
+items[ironOre.name] = ironOre;
 items[coalOre.name] = coalOre;
 items[mithrilOre.name] = mithrilOre;
 items[adamantiteOre] = adamantiteOre;
@@ -80,3 +101,5 @@ items[diamond.name] = diamond;
 items[emerald.name] = emerald;
 items[topaz.name] = topaz;
 items[ruby.name] = ruby;
+items[bronzeBar.name] = bronzeBar;
+items[ironBar.name] = ironBar;
