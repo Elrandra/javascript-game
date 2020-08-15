@@ -61,8 +61,14 @@ function loadSkills() {
   if (JSON.parse(localStorage.getItem("mining")) != null) {
     mining = JSON.parse(localStorage.getItem("mining"));
   }
+  if(JSON.parse(localStorage.getItem("smithing")) != null) {
+    smithing = JSON.parse(localStorage.getItem("smithing"));
+  }
+
   document.getElementById("miningxp").innerHTML = mining.message.xp + " " + mining.xp;
   document.getElementById("mininglevel").innerHTML = mining.message.level + " " + mining.level;
+  document.getElementById("smithingxp").innerHTML = smithing.message.xp + " " + smithing.xp;
+  document.getElementById("smithinglevel").innerHTML = smithing.message.level + " " +smithing.level;
 }
 
 function saveSkill(skill) {
@@ -81,6 +87,7 @@ function updateLevelElement(skill) {
 function updateConsole(message) {
   consoleMessage += message;
   document.getElementById("console").innerHTML = consoleMessage;
+  document.getElementById("console").scrollTop = document.getElementById("console").scrollHeight;
 }
 
 function addToInventory(obtainedItems) {
@@ -103,8 +110,10 @@ function onLoadInventory() {
   var invKeys = Object.keys(inventory);
   for (i = 0; i < invKeys.length; i++) {
     var item = items[invKeys[i]];
+    console.log(invKeys[i]);
     console.log(item);
     if (inventory[invKeys[i]] != 0) {
+      console.log(item);
       document.getElementById("inventory").innerHTML += "<div class='item' id='item-" + item.name + "'><object type='image/svg+xml' data='" + item.icon + "' class='itemImage'></object><div class='itemAmount' id='amount-" + item.name + "'>" + inventory[invKeys[i]] + "</div></div>";
     } else {
       document.getElementById("inventory").innerHTML += "<div class='item' id='item-" + item.name + "'><object type='image/svg+xml' data='" + item.icon + "' class='itemImage'></object><div class='itemAmount' id='amount-" + item.name + "'>" + inventory[invKeys[i]] + "</div></div>";
