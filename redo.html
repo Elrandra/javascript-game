@@ -5,16 +5,20 @@
   <meta charset="utf-8">
   <title></title>
   <script src="redo.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
   <link rel="stylesheet" href="redo.css">
 </head>
 
 <body onload="onLoad()">
-  
+
   <div id="left-container">
-    <li onclick="switchPage('inventory')">Inventory</li>
+    <li onclick="switchPage('inventory')" id="invent">Inventory</li>
     <li onclick="switchPage('mining')">Mining</li>
     <li onclick="switchPage('smithing')">Smithing</li>
     <li onclick="switchPage('fishing')">Fishing</li>
+    <li onclick="switchPage('woodcutting')">Woodcutting</li>
   </div>
   <div id="right-container">
     <div id="inventory">
@@ -28,8 +32,16 @@
       <input type="button" name="" value="Fish for Shrimp" onclick="fishin(shrimp)"><br>
 
     </div>
+    <div id="woodcutting">
+      <div id="woodcuttinglevel"></div>
+      <div id="woodcuttingxp"></div>
+      <div id="chopRegularTree">
+        <div id="regularTreeProgress"></div>
+        <input type="button" name="ChopRegularTree" value="Cut Tree" onclick="chopTree(0)">
+      </div>
+    </div>
     <div id="mining">
-      <div id="mininglevel" context="itemmenu">
+      <div id="mininglevel">
       </div>
       <div id="miningxp">
       </div>
@@ -67,13 +79,19 @@
       <div id="mineAdamantite">
         <div id="adamantiteProgress">
         </div>
-        <input type="button" name="MineAdamantite" value="Mine Adamantite" onclick="mineRock(5)">
+        <input type="button" name="MineAdamantite" value="Mine Adamant" onclick="mineRock(5)">
       </div>
 
       <div id="mineRunite">
         <div id="runiteProgress">
         </div>
-        <input type="button" name="MineRunite" value="Mine Runite" onclick="mineRock(6)">
+        <input type="button" name="MineRunite" value="Mine Rune" onclick="mineRock(6)">
+      </div>
+
+      <div id="mineDragonite">
+        <div id="dragoniteProgress">
+        </div>
+        <input type="button" name="MineRunite" value="Mine Dragonite" onclick="mineRock(7)">
       </div>
 
       <br><br><br><br><br><br><br><br><br>
@@ -89,28 +107,139 @@
     <div id="smithing">
       <div id="smithingxp"></div><br>
       <div id="smithinglevel"></div><br>
-      <input type="button" name="" value="Smelt Bronze Bar" onClick="smelt(bronzeBar)"><br>
-      <input type="button" name="" value="Smelt Iron Bar" onClick="smelt(ironBar)"><br>
-      <input type="button" name="" value="Smelt Steel Bar" onClick="smelt(steelBar)"><br>
-      <input type="button" name="" value="Smelt Mithril Bar" onclick="smelt(mithrilBar)"><br>
-      <input type="button" name="" value="Smelt Adamantite Bar" onclick="smelt(adamantiteBar)"><br>
-      <input type="button" name="" value="Smelt Runite Bar" onclick="smelt(runiteBar)"><br>
-      <input type="button" name="" value="Bronze Dagger" onclick="smelt(bronzeDagger)"><br>
-      <input type="button" name="" value="Bronze Throwing Knives" onclick="smelt(bronzeThrowingKnife)"><br>
-      <input type="button" name="" value="Bronze Sword" onclick="smelt(bronzeSword)"><br>
-      <input type="button" name="" value="Bronze Arrow Tips" onclick="smelt(bronzeArrowtips)"><br>
-      <input type="button" name="" value="Bronze Gloves" onclick="smelt(bronzeGloves)"><br>
-      <input type="button" name="" value="Bronze Scimitar" onclick="smelt(bronzeScimitar)"><br>
-      <input type="button" name="" value="Bronze Helmet" onclick="smelt(bronzeHelmet)"><br>
-      <input type="button" name="" value="Bronze Battleaxe" onclick="smelt(bronzeBattleaxe)"><br>
-      <input type="button" name="" value="Bronze Javelin Heads" onclick="smelt(bronzeJavelinHeads)"><br>
-      <input type="button" name="" value="Bronze Boots" onclick="smelt(bronzeBoots)"><br>
-      <input type="button" name="" value="Bronze Shield" onclick="smelt(bronzeShield)"><br>
-      <input type="button" name="" value="Bronze 2H Sword" onclick="smelt(bronze2HSword)"><br>
-      <input type="button" name="" value="Bronze Crossbow Head" onclick="smelt(bronzeCrossbowHead)"><br>
-      <input type="button" name="" value="Bronze Platelegs" onclick="smelt(bronzePlatelegs)"><br>
-      <input type="button" name="" value="Bronze Platebody" onclick="smelt(bronzePlatebody)"><br>
+      <div id="bronze">
+        <input type="button" name="" value="Smelt Bronze Bar" onClick="craft(bronzeBar, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Bar" onClick="smelt(ironBar)"><br>
+        <input type="button" name="" value="Smelt Steel Bar" onClick="smelt(steelBar)"><br>
+        <input type="button" name="" value="Smelt Mithril Bar" onclick="smelt(mithrilBar)"><br>
+        <input type="button" name="" value="Smelt Adamant Bar" onclick="smelt(adamantBar)"><br>
+        <input type="button" name="" value="Smelt Runite Bar" onclick="smelt(runiteBar)"><br>
+        <input type="button" name="" value="Bronze Dagger" onclick="smelt(bronzeDagger)"><br>
+        <input type="button" name="" value="Bronze Throwing Knives" onclick="smelt(bronzeThrowingKnife)"><br>
+        <input type="button" name="" value="Bronze Sword" onclick="smelt(bronzeSword)"><br>
+        <input type="button" name="" value="Bronze Arrow Tips" onclick="smelt(bronzeArrowtips)"><br>
+        <input type="button" name="" value="Bronze Gloves" onclick="smelt(bronzeGloves)"><br>
+        <input type="button" name="" value="Bronze Scimitar" onclick="smelt(bronzeScimitar)"><br>
+        <input type="button" name="" value="Bronze Helmet" onclick="smelt(bronzeHelmet)"><br>
+        <input type="button" name="" value="Bronze Battleaxe" onclick="smelt(bronzeBattleaxe)"><br>
+        <input type="button" name="" value="Bronze Javelin Heads" onclick="smelt(bronzeJavelinHeads)"><br>
+        <input type="button" name="" value="Bronze Boots" onclick="smelt(bronzeBoots)"><br>
+        <input type="button" name="" value="Bronze Shield" onclick="smelt(bronzeShield)"><br>
+        <input type="button" name="" value="Bronze 2H Sword" onclick="smelt(bronze2HSword)"><br>
+        <input type="button" name="" value="Bronze Crossbow Head" onclick="smelt(bronzeCrossbowHead)"><br>
+        <input type="button" name="" value="Bronze Platelegs" onclick="smelt(bronzePlatelegs)"><br>
+        <input type="button" name="" value="Bronze Platebody" onclick="smelt(bronzePlatebody)"><br>
+      </div>
+      <div id="iron">
+        <input type="button" name="" value="Smelt Iron Bar" onclick="craft(ironBar, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Dagger" onclick="craft(ironDagger, smithing)"><br>
+        <input type="button" name="" value="Smelt Headless Bolts" onclick="craft(headlessBolts, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Throwing Knife" onclick="craft(ironThrowingKnife, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Sword" onclick="craft(ironSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Arrowtips" onclick="craft(ironArrowtips, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Gloves" onclick="craft(ironGloves, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Scimitar" onclick="craft(ironScimitar, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Helmet" onclick="craft(ironHelmet, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Battleaxe" onclick="craft(ironBattleaxe, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Javelin Heads" onclick="craft(ironJavelinHeads, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Boots" onclick="craft(ironBoots, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Shield" onclick="craft(ironShield, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron 2H Sword" onclick="craft(iron2HSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Crossbow Head" onclick="craft(ironCrossbowHead, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Platelegs" onclick="craft(ironPlatelegs, smithing)"><br>
+        <input type="button" name="" value="Smelt Iron Platebody" onclick="craft(ironPlatebody, smithing)"><br>
+      </div>
+      <div id="steel">
+        <input type="button" name="" value="Smelt Steel Bar" onclick="craft(steelBar, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Dagger" onclick="craft(steelDagger, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Throwing Knife" onclick="craft(steelThrowingKnife, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Sword" onclick="craft(steelSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Arrowtips" onclick="craft(steelArrowtips, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Gloves" onclick="craft(steelGloves, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Scimitar" onclick="craft(steelScimitar, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Helmet" onclick="craft(steelHelmet, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Battleaxe" onclick="craft(steelBattleaxe, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Javelin Heads" onclick="craft(steelJavelinHeads, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Boots" onclick="craft(steelBoots, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Shield" onclick="craft(steelShield, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel 2H Sword" onclick="craft(steel2HSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Crossbow Head" onclick="craft(steelCrossbowHead, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Platelegs" onclick="craft(steelPlatelegs, smithing)"><br>
+        <input type="button" name="" value="Smelt Steel Platebody" onclick="craft(steelPlatebody, smithing)"><br>
+      </div>
 
+      <div id="mithril">
+        <input type="button" name="" value="Smelt Mithril Bar" onclick="craft(mithrilBar, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Dagger" onclick="craft(mithrilDagger, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Throwing Knife" onclick="craft(mithrilThrowingKnife, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Sword" onclick="craft(mithrilSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Arrowtips" onclick="craft(mithrilArrowtips, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Gloves" onclick="craft(mithrilGloves, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Scimitar" onclick="craft(mithrilScimitar, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Helmet" onclick="craft(mithrilHelmet, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Battleaxe" onclick="craft(mithrilBattleaxe, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Javelin Heads" onclick="craft(mithrilJavelinHeads, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Boots" onclick="craft(mithrilBoots, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Shield" onclick="craft(mithrilShield, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril 2H Sword" onclick="craft(mithril2HSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Crossbow Head" onclick="craft(mithrilCrossbowHead, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Platelegs" onclick="craft(mithrilPlatelegs, smithing)"><br>
+        <input type="button" name="" value="Smelt Mithril Platebody" onclick="craft(mithrilPlatebody, smithing)"><br>
+      </div>
+      <div id="adamant">
+        <input type="button" name="" value="Smelt Adamant Bar" onclick="craft(adamantBar, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Dagger" onclick="craft(adamantDagger, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Throwing Knife" onclick="craft(adamantThrowingKnife, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Sword" onclick="craft(adamantSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Arrowtips" onclick="craft(adamantArrowtips, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Gloves" onclick="craft(adamantGloves, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Scimitar" onclick="craft(adamantScimitar, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Helmet" onclick="craft(adamantHelmet, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Battleaxe" onclick="craft(adamantBattleaxe, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Javelin Heads" onclick="craft(adamantJavelinHeads, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Boots" onclick="craft(adamantBoots, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Shield" onclick="craft(adamantShield, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant 2H Sword" onclick="craft(adamant2HSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Crossbow Head" onclick="craft(adamantCrossbowHead, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Platelegs" onclick="craft(adamantPlatelegs, smithing)"><br>
+        <input type="button" name="" value="Smelt Adamant Platebody" onclick="craft(adamantPlatebody, smithing)"><br>
+      </div>
+      <div id="rune">
+        <input type="button" name="" value="Smelt Rune Bar" onclick="craft(runeBar, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Dagger" onclick="craft(runeDagger, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Throwing Knife" onclick="craft(runeThrowingKnife, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Sword" onclick="craft(runeSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Arrow Tips" onclick="craft(runeArrowTips, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Gloves" onclick="craft(runeGloves, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Scimitar" onclick="craft(runeScimitar, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Helmet" onclick="craft(runeHelmet, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Battleaxe" onclick="craft(runeBattleaxe, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Javelin Heads" onclick="craft(runeJavelinHeads, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Boots" onclick="craft(runeBoots, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Shield" onclick="craft(runeShield, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune 2H Sword" onclick="craft(rune2HSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Crossbow Head" onclick="craft(runeCrossbowHead, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Platelegs" onclick="craft(runePlatelegs, smithing)"><br>
+        <input type="button" name="" value="Smelt Rune Platebody" onclick="craft(runePlatebody, smithing)">
+      </div>
+      <div id="dragon">
+        <input type="button" name="" value="Smelt Dragonite Bar" onclick="craft(dragoniteBar, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Dagger" onclick="craft(dragonDagger, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Throwing Knife" onclick="craft(dragonThrowingKnife, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Sword" onclick="craft(dragonSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Arrowtips" onclick="craft(dragonArrowtips, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Gloves" onclick="craft(dragonGloves, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Scimitar" onclick="craft(dragonScimitar, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Helmet" onclick="craft(dragonHelmet, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Battleaxe" onclick="craft(dragonBattleaxe, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Javelin Heads" onclick="craft(dragonJavelinHeads, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Boots" onclick="craft(dragonBoots, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Shield" onclick="craft(dragonShield, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon 2H Sword" onclick="craft(dragon2HSword, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Crossbow Head" onclick="craft(dragonCrossbowHead, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Platelegs" onclick="craft(dragonPlatelegs, smithing)"><br>
+        <input type="button" name="" value="Smelt Dragon Platebody" onclick="craft(dragonPlatebody, smithing)"><br>
+      </div>
 
     </div>
   </div>

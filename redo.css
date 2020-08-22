@@ -2,7 +2,26 @@ body {
   background-color: grey;
 }
 
+#chopRegularTree{
+  min-height: 5.5vh;
+  min-width: 15vw;
+  float: left;
+  border: 5px;
+  border-color: black;
+  background-color: grey;
+  display: block;
+  text-align: center;
+  margin-right: 3vw;
+  font-size: 10%;
+  margin-bottom: 2vh;
+  border-style: solid;
+}
 
+#regularTreeProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
 
 #shrimpProgress{
   width: 1%;
@@ -47,6 +66,12 @@ body {
 }
 
 #runiteProgress{
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+#dragoniteProgress{
   width: 1%;
   height: 30px;
   background-color: #4CAF50;
@@ -150,6 +175,20 @@ body {
   margin-bottom: 2vh;
 }
 
+#mineDragonite{
+  min-height: 5.5vh;
+  min-width: 15vw;
+  float: left;
+  border: 5px;
+  border-style: solid;
+  border-color: black;
+  background-color: grey;
+  display: block;
+  text-align: center;
+  margin-right: 3vw;
+  margin-bottom: 2vh;
+}
+
 #console {
   position: absolute;
   bottom: 0;
@@ -179,8 +218,14 @@ body {
   display: none;
 }
 
+#woodcutting{
+  display: none;
+}
+
 #inventory{
   display: none;
+  overflow: scroll;
+  height: 75vh;
 }
 
 .item {
@@ -205,6 +250,42 @@ body {
   text-align: center;
   margin-bottom: 1%;
   height: auto;
+}
+
+#bronze {
+  float: left;
+  border-style: solid;
+  display: inline-block;
+}
+
+#iron {
+  float: left;
+  border-style: solid;
+  display: inline-block;
+}
+
+#steel {
+  float: left;
+  border-style: solid;
+  display: inline-block;
+}
+
+#mithril {
+  float: left;
+  border-style: solid;
+  display: inline-block;
+}
+
+#adamant {
+  float: left;
+  border-style: solid;
+  display: inline-block;
+}
+
+#rune {
+  float: left;
+  border-style: solid;
+  display: inline-block;
 }
 
 #smithing {
